@@ -1,10 +1,12 @@
 import React from 'react';
+import { CircularProgressbar } from 'react-circular-progressbar';
 
 import { Container, FileInfo } from './styles';
 
 interface FileProps {
   name: string;
   readableSize: string;
+  progress: number;
 }
 
 interface FileListProps {
@@ -22,6 +24,15 @@ const FileList: React.FC<FileListProps> = ({ files }: FileListProps) => {
               <span>{uploadedFile.readableSize}</span>
             </div>
           </FileInfo>
+          <CircularProgressbar
+            styles={{
+              root: { width: 48 },
+              path: { stroke: '#7159c1' },
+            }}
+            strokeWidth={16}
+            value={uploadedFile.progress}
+            text={`${uploadedFile.progress}%`}
+          />
         </li>
       ))}
     </Container>
